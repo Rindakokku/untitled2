@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PagesController extends Controller
+{
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    function index(){
+        return view(view:'pages.index' );
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    function about(){
+        return view(view:'pages.about' );
+    }
+    function contact(){
+        return view(view:'pages.contact' );
+    }
+
+    function store(Request $request)
+    {
+        $name = $request->name;
+        return redirect()->route('thanks', ['name' => $name]);
+    }
+    function thanks($name){
+        return view('pages.thankyou')->with(compact('name'));
+    }
+}
